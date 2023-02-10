@@ -34,8 +34,37 @@ Pre-req: CDK stack already deployed (most likely yes).
 
 ## CDK
 
-### Deploying CDK stack
+### Deploying ECS stack
 Pre-req: Downloaded AWS and CDK cli. Ran `cdk bootstrap`. Cd into `cdk` folder.
 
 - Double check the CFN change set `cdk synth`
 - `cdk deploy`
+
+### Deploying Pipeline stack
+References: [[1]](https://github.com/aws-samples/amazon-ecs-fargate-cdk-v2-cicd/tree/main/cdk-v2)[[2]](https://blog.petrabarus.net/2020/03/23/building-ci-cd-pipeline-using-aws-codepipeline-aws-codebuild-amazon-ecr-amazon-ecs-with-aws-cdk/)
+- Get a personal access token for this specific repo. Allow all repo permissions. Token expires in a year, so if changes aren't being detected anymore, need to update the secret.
+- Run the following commands to store values in Secrets Manager.
+```
+aws secretsmanager create-secret \
+    --name /wol-api/dev/GITHUB_TOKEN \
+    --secret-string abcdefg1234abcdefg56789abcdefg
+```
+- Once the above command is run, check if the secret is stored as expected using below command:
+```
+aws secretsmanager get-secret-value \
+ --secret-id /wol-api/dev/GITHUB_TOKEN \
+ --version-stage AWSCURRENT
+ ```
+- Authorize Codebuild to create the Github hook
+```
+aws codebuild import-source-credentials \
+ --server-type GITHUB \
+ --auth-type PERSONAL_ACCESS_TOKEN \
+ --token <GITHUB-TOKEN> 
+ ```
+- Verify the credential import worked. `aws codebuild list-source-credentials `
+- Deploy your application
+```
+cdk synth
+cdk deploy 
+```
