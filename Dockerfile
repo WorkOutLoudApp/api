@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM public.ecr.aws/bitnami/node:16.19.0
 WORKDIR /srv/app
 COPY package*.json ./
 RUN npm install

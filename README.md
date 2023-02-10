@@ -28,6 +28,8 @@ Pre-req: CDK stack already deployed (most likely yes).
   - The last value is the repositoryURI from step 1.
 - `docker push 205472260469.dkr.ecr.us-west-2.amazonaws.com/wol-api:latest`
 
+### Manually updating ECS to get new ECR image (Not recommended)
+<!-- - `aws ecs update-service --force-new-deployment --cluster app-cluster --service sample-express-app -->
 ---
 
 ## CDK
