@@ -3,11 +3,11 @@ import express from "express";
 const app = express();
 const PORT = 3000;
 
-const subpath = "/api/v/"
+const subpath = "/api/v1/"
 
 // Default route
 app.get(`${subpath}`, (req, res) => {
-  res.send("Hello World 2/10/23 2:52 AM!");
+  res.send("Hello World 3/8/23 2:52 AM!");
 });
 
 app.listen(PORT, () => {
