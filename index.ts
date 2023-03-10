@@ -1,15 +1,29 @@
-import express from "express";
+import express, { Request, Response } from "express";
+import helmet from 'helmet';
+import morgan from 'morgan';
+import { errorHandler } from './middlewares'
+import apiRouter from './routes/api.router'
 
 const app = express();
-const PORT = 3000;
+const port = process.env.PORT || 3000
+const dev = process.env.NODE_ENV !== 'production'
 
-const subpath = "/api/v1/"
+// Middlewares
+app.use(helmet())
+if (dev) app.use(morgan('dev'))
 
-// Default route
-app.get(`${subpath}`, (req, res) => {
-  res.send("Hello World 3/8/23 2:52 AM!");
-});
 
-app.listen(PORT, () => {
-  console.log(`Express server is listening at ${PORT}`);
-});
+// Routes
+app.use('/api', apiRouter)
+
+app.use((req: Request, res: Response) => {
+  res.status(404).send('Not Found')
+})
+app.use(errorHandler)
+
+app.listen(port, () => {
+  // eslint-disable-next-line no-console
+  console.log(`Listening on port ${port}`)
+})
+
+
