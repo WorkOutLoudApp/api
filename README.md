@@ -31,3 +31,11 @@ Pre-req: CDK stack already deployed (most likely yes).
 ### Manually updating ECS to get new ECR image (Not recommended)
 <!-- - `aws ecs update-service --force-new-deployment --cluster app-cluster --service sample-express-app -->
 ---
+
+## Connecting to AWS RDS PostGresSQL DB
+psql \
+   --host=<DB instance endpoint> \
+   --port=<port> \
+   --username=<master username> \
+   --password \
+   --dbname=<database name> 
