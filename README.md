@@ -39,3 +39,7 @@ psql \
    --username=<master username> \
    --password \
    --dbname=<database name> 
+
+export DATABASE_URL=postgresql://postgres:zQguza262GFIGlNu@wolappdbdevstack-wolappdbdevinstanceed330256-fjagkrq8ffwf.c4scdckr8nhu.us-west-2.rds.amazonaws.com:5432/wol_app_db_dev npx prisma db push
+
+npx prisma generate

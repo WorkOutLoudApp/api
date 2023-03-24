@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { getHello } from '../../../controllers/hello.controller';
 
 import {
   SecretsManagerClient,
@@ -28,7 +27,6 @@ router.get('/secret', async (req, res) => {
     );
     const secret = response.SecretString;
 
-    console.log(secret)
     res.send(secret);
   } catch (error) {
     // For a list of exceptions thrown, see
