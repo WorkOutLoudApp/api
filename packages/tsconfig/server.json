@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Server",
+  "extends": "./base.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["ES2015"],
+    "incremental": true,
+    "module": "CommonJS"
+  }
+}

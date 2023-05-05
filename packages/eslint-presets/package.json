@@ -1,0 +1,31 @@
+{
+  "name": "@shared/eslint-presets",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "next.js",
+    "react-library.js",
+    "server.js"
+  ],
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
+    "eslint": "^8.23.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^16.1.0",
+    "eslint-config-next": "^12.0.7",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^25.3.4",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-testing-library": "^5.0.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
+    "typescript": "^4.8.3"
+  }
+}
