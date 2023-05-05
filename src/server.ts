@@ -15,16 +15,15 @@ if (dev) app.use(morgan('dev'))
 // Routes
 app.use('/api/v1', v1Router)
 
+// For AWS ECS to know health of API
+app.get("/api/healthcheck", (req, res) => {
+  res.sendStatus(200);
+});
 
 // Error Handling
 app.use((req: Request, res: Response) => {
   res.status(404).send('Not Found')
 })
-
-// For AWS ECS to know health of API
-app.get("/api/healthcheck", (req, res) => {
-  res.sendStatus(200);
-});
 
 app.use(errorHandler)
 
