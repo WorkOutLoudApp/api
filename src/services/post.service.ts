@@ -12,10 +12,10 @@ const getPosts = async (userId: number) => {
                 timestamp: 'desc',
             },
         })
-        const formattedPosts = posts.map((post) => ({
+        const formattedPosts = posts.map((post: any) => ({
             ...post,
             likes: post.PostLike?.length || 0,
-            isLikedByUser: post.PostLike?.some((like) => like.userId === userId)
+            isLikedByUser: post.PostLike?.some((like : any) => like.userId === userId)
         }));
         return formattedPosts
     } catch (error) {
