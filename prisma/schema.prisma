@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:zQguza262GFIGlNu@wolappdbdevstack-wolappdbdevinstanceed330256-fjagkrq8ffwf.c4scdckr8nhu.us-west-2.rds.amazonaws.com:5432/wol_app_db_dev?schema=public"
+}
+
+model Account {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+  user     User?
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  username  String
+  firstName String
+  lastName  String
+  avatar    String
+  accountId Int        @unique
+  account   Account    @relation(fields: [accountId], references: [id])
+  Routine   Routine[]
+  Post      Post[]
+  PostLike  PostLike[]
+}
+
+model Routine {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String
+  isFavorite  Boolean    @default(false)
+  userId      Int
+  views       Int        @default(0)
+  user        User       @relation(fields: [userId], references: [id])
+  exercises   Exercise[]
+  Post        Post[]
+}
+
+model Exercise {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String
+  reps        Int
+  sets        Int
+  rest        Int     @default(30)
+  image       String?
+  bodyPart    String?
+  equipment   String?
+  target      String?
+  routineId   Int
+  routine     Routine @relation(fields: [routineId], references: [id])
+}
+
+model Post {
+  id              Int        @id @default(autoincrement())
+  userId          Int
+  user            User       @relation(fields: [userId], references: [id])
+  description     String
+  linkedRoutineId Int?
+  linkedRoutine   Routine?   @relation(fields: [linkedRoutineId], references: [id])
+  timestamp       DateTime   @default(now())
+  PostLike        PostLike[]
+}
+
+model PostLike {
+  id     Int  @id @default(autoincrement())
+  postId Int
+  post   Post @relation(fields: [postId], references: [id])
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
+}
